@@ -75,7 +75,7 @@ Route::group(['prefix' =>'{language}'], function (){
 
     Route::view('user.sujet/','user.sujet')->name('user.sujet');
      
-    Route::get('send-mail', 'MailController@sendMail');
+    
    
    Route::get('view-records','StudViewController@index');
 

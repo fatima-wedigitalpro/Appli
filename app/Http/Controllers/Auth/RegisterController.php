@@ -4,12 +4,16 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use App\User;
+
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactMail;
+use App\Mail\TestMail;
+use App\Mail\WelcomeMail;
+use App\User;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -68,13 +72,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'password' => ($data['password']),
             'idOrganisation'=>$data['organisation'],
         ]);
-        Mail::to($data['fatimazeddouti98@gmail.com'])->send(new ContactMail($user));
+        Mail::to($data['email'])->send(new WelcomeMail($user));
+          return $user;
     }
 
     public function getOrga(Request $request)
