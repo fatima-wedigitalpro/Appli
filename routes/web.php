@@ -49,7 +49,7 @@ Route::group(['prefix' =>'{language}'], function (){
     Route::view('compagne.voir/','compagne.voir')->name('compagne.voir');
 
     Route::view('compagne.voir1/','compagne.voir1')->name('compagne.voir1');
-    Route::post('compagne.voir1/','compagneController@showCampagne'); 
+    Route::post('compagne.voir1/','compagneController@showCampagne');   
     
     
     Route::view('sujet.voir/','sujet.voir')->name('sujet.voir');
