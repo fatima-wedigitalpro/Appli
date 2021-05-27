@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class userController extends Controller
 {
@@ -38,9 +39,15 @@ class userController extends Controller
 
     public function getSubject(Request $req)
     {
-        $compagne=\App\Compagne::where('id_Compagne',$req->compagne)->get();
-        $sujet=\App\Sujet::where('id',$compagne->idSujet)->get();
-        return redirect()->route('user.sujet', ['sujet' => $sujet->id ,'language' => app()->getLocale()]);
+        $sujet=\DB::table('compagnes')
+        ->where('id_Compagne', '=', $req->compagne)
+        ->pluck('idSujet');   
+                   
+        $campagne=$req->compagne;
+
+  
+
+        return redirect()->route('user.sujet', ['sujet' => $sujet[0] ,'campagne' => $campagne,'language' => app()->getLocale()]);
     }
 }
 

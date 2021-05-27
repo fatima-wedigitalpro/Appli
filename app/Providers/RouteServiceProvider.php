@@ -21,6 +21,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
+    public const Ques = '/en/user.accederQuestionnaire';
     public const HOME = '/home';
 
     /**
